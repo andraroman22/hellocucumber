@@ -4,8 +4,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -32,14 +35,19 @@ public class SearchFunction {
         WebElement searchButton=driver.findElement(By.className("search-box-icon"));
         searchButton.click();
 
-        WebElement menuList =  driver.findElement(By.className("st-results-container"));
-        menuList.click();
-
         List<WebElement>countResults = driver.findElements(By.className("test"));
 
-        //sdfsdfdAssert.assertEquals(10,countResults.size());
+        Assert.assertEquals(10,countResults.size());
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        WebElement nextButton = driver.findElement(By.linkText("Next"));
+        js.executeScript("arguments[0].scrollIntoView();", nextButton);
+        nextButton.click();
+
+        List<WebElement> listPage2 = driver.findElements(By.className("test"));
+        js.executeScript("arguments[0].scrollIntoView();", listPage2.get(2));
+        listPage2.get(2).findElement(By.linkText("PEARSON PLC")).click();
 
     }
-
 }
-
