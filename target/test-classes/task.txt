@@ -1,0 +1,27 @@
+One of the question would be if we have any other conditions to login into the application. For example captcha code
+Another one is regarding what is the format of the username/password(uppercase/lowercase letters,special characters,etc)
+
+
+Feature: As a user, I want to be able to log into the application.
+
+Scenario: User is able to login into the application
+  Given user has account
+  When I put good login and password
+  Then I should login to platform
+
+  Scenario: User is  not able to login into the application
+    Given user has account
+    When I put bad login and good password
+    Then I shouldn't login to platform
+
+  Scenario: User is  not able to login into the application
+    Given user has account
+    When I put good login and bad password
+    Then I shouldn't login to platform
+
+  Scenario: User is  not able to login into the application
+    Given user has account
+    When I put bad login and bad password
+    Then I shouldn't login to platform
+
+

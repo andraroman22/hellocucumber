@@ -4,5 +4,3 @@ Feature: test the search functionality on pearson.com
     Given  main page is loaded
     When I look for search element on page
     Then I can use search feature on page
-
-
